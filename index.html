@@ -90,24 +90,28 @@
         }
 
         /* Photo Showcase */
-        .photo-showcase {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            background-color: #e9ecef;
-            padding: 20px 0;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-        .showcase-wrapper {
-            display: flex;
-            width: calc(100% * 3);
-            animation: slide 15s linear infinite;
-        }
-        .showcase-wrapper img {
-            width: 100%;
-            height: auto;
-        }
-     @keyframes slide {
+ .photo-showcase {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Adjust the height as needed */
+    overflow: hidden;
+    background-color: #e9ecef;
+    padding: 20px 0;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.showcase-wrapper {
+    display: flex;
+    width: calc(100% * 3); /* Adjust based on the number of images */
+    animation: slide 90s linear infinite; /* Increased duration for slower speed */
+}
+
+.showcase-wrapper img {
+    width: 100%;
+    height: auto;
+}
+
+@keyframes slide {
     0% { transform: translateX(0%); }
     25% { transform: translateX(-100%); }
     50% { transform: translateX(-200%); }
