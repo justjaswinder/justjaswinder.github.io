@@ -107,13 +107,13 @@
             width: 100%;
             height: auto;
         }
-        @keyframes slide {
-            0% { transform: translateX(0%); }
-            33% { transform: translateX(-100%); }
-            66% { transform: translateX(-200%); }
-            100% { transform: translateX(0%); }
-        }
-
+     @keyframes slide {
+    0% { transform: translateX(0%); }
+    25% { transform: translateX(-100%); }
+    50% { transform: translateX(-200%); }
+    75% { transform: translateX(-300%); } /* Add more keyframes if you have more images */
+    100% { transform: translateX(-400%); } /* Adjust based on the number of images */
+}
         footer {
             background-color: #343a40;
             color: white;
@@ -153,7 +153,14 @@
                 <p>5+ years of hands-on experience in Android Mobile Software Engineering. Currently working as an Android Developer Technology Analyst at Infosys Ltd, handling projects for USA and Canada clients. Expertise in Java, RxJava, Kotlin Coroutines, Android Jetpack Components, and Android frameworks. Strong commitment to delivering performant code and adhering to Android UI design principles across various devices, including TVs, Tablets, and Portable PDTs.</p>
             </div>
         </section>
-
+      <section id="photos" class="section photo-showcase">
+            <h2>Projects Showcase</h2>
+            <div class="showcase-wrapper">
+               <img src="images/photo1.png" alt="Project Screenshot 1">
+        <img src="images/photo2.png" alt="Project Screenshot 2">
+        <img src="images/photo3.png" alt="Project Screenshot 3">
+            </div>
+        </section>
         <section id="skills" class="section">
             <h2>Technical Skills</h2>
             <div class="skills">
@@ -218,14 +225,7 @@
             </div>
         </section>
 
-        <section id="photos" class="section photo-showcase">
-            <h2>Photo Showcase</h2>
-            <div class="showcase-wrapper">
-               <img src="photo1.jpg" alt="Project Screenshot 1">
-        <img src="photo2.jpg" alt="Project Screenshot 2">
-        <img src="photo3.jpg" alt="Project Screenshot 3">
-            </div>
-        </section>
+  
 
         <section id="contact" class="section">
             <h2>Contact</h2>
