@@ -62,16 +62,16 @@
             margin: 5px 0;
             font-size: 1.1em;
         }
-        .summary, .skills, .experience, .education {
+        .summary, .skills, .experience, .education, .projects {
             background-color: white;
             padding: 20px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
-        .skills ul, .experience ul, .education ul {
+        .skills ul, .experience ul, .education ul, .projects ul {
             list-style: none;
             padding: 0;
         }
-        .skills li, .experience li, .education li {
+        .skills li, .experience li, .education li, .projects li {
             margin-bottom: 10px;
         }
         .experience .job-title {
@@ -80,6 +80,13 @@
         }
         .education .degree {
             font-weight: bold;
+        }
+        .projects a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .projects a:hover {
+            text-decoration: underline;
         }
         footer {
             background-color: #343a40;
@@ -101,6 +108,7 @@
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
     </nav>
 
@@ -172,11 +180,20 @@
             </div>
         </section>
 
+        <section id="projects" class="section">
+            <h2>Learning Projects</h2>
+            <div class="projects">
+                <ul>
+                    <li><strong>MoviesPlex:</strong> <a href="https://github.com/justjaswinder/MoviesPlex" target="_blank">GitHub Repository</a> - This app uses Retrofit, Room Database, and MVVM, with Jetpack Compose and Kotlin.</li>
+                    <li><strong>GraphQLDemoApp:</strong> <a href="https://github.com/justjaswinder/GraphQLDemoApp" target="_blank">GitHub Repository</a> - Implementation of GraphQL in Android App using Clean Architecture.</li>
+                    <li><strong>Weather App:</strong> <a href="https://github.com/justjaswinder/Weather_App" target="_blank">GitHub Repository</a> - Features dark theme, splash screen, MVVM architecture, Hilt for Dependency Injection, ROOM Database, Retrofit, Compose UI with different font styles, and Jetpack Navigation.</li>
+                </ul>
+            </div>
+        </section>
+
         <section id="contact" class="section">
-            <h2>Contact Me</h2>
-            <p>If you're interested in working together or just want to connect, feel free to reach out!</p>
-            <p><strong>Email:</strong> <a href="mailto:jaschahal93@gmail.com">jaschahal93@gmail.com</a></p>
-            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/justjaswinder/" target="_blank">linkedin.com/in/justjaswinder</a></p>
+            <h2>Contact</h2>
+            <p>If you are interested in working with me or have any questions, feel free to reach out via email or LinkedIn.</p>
         </section>
     </div>
 
