@@ -3,35 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jaswinder's Android Developer Portfolio</title>
+    <title>Jaswinder Singh - Android Developer Portfolio</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #f8f9fa;
+            color: #343a40;
         }
         header {
-            background-color: #4CAF50;
+            background-color: #007bff;
             color: white;
-            padding: 20px;
+            padding: 30px 0;
             text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            margin: 10px 0;
+            font-size: 1.2em;
         }
         nav {
             display: flex;
             justify-content: center;
-            background-color: #333;
+            background-color: #343a40;
         }
         nav a {
             color: white;
-            padding: 14px 20px;
+            padding: 15px 20px;
             text-decoration: none;
-            text-align: center;
+            text-transform: uppercase;
         }
         nav a:hover {
-            background-color: #ddd;
-            color: black;
+            background-color: #007bff;
+            color: white;
         }
         .container {
             width: 80%;
@@ -41,99 +49,134 @@
         .section {
             margin-bottom: 40px;
         }
-        h1, h2, h3 {
-            color: #333;
+        h2 {
             text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
         }
-        .skills, .projects {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
+        .contact-info {
+            text-align: center;
+            margin-bottom: 20px;
         }
-        .skill, .project {
+        .contact-info p {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+        .summary, .skills, .experience, .education {
             background-color: white;
             padding: 20px;
-            margin: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 45%;
-            box-sizing: border-box;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
-        .project img {
-            max-width: 100%;
-            height: auto;
+        .skills ul, .experience ul, .education ul {
+            list-style: none;
+            padding: 0;
+        }
+        .skills li, .experience li, .education li {
+            margin-bottom: 10px;
+        }
+        .experience .job-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .education .degree {
+            font-weight: bold;
         }
         footer {
-            background-color: #333;
+            background-color: #343a40;
             color: white;
             text-align: center;
             padding: 10px 0;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Jaswinder Singh - Android Developer</h1>
-        <p>Creating seamless mobile experiences with modern Android development.</p>
+        <h1>Jaswinder Singh</h1>
+        <p>Android Developer | Technology Analyst</p>
     </header>
 
     <nav>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
         <a href="#contact">Contact</a>
     </nav>
 
     <div class="container">
         <section id="about" class="section">
             <h2>About Me</h2>
-            <p>Hello! I'm Jaswinder, a passionate Android Developer with experience in building high-quality mobile applications. I specialize in Jetpack Compose, declarative UI development, and creating shared components. My goal is to develop innovative and user-friendly apps that solve real-world problems.</p>
+            <div class="contact-info">
+                <p><strong>Contact No:</strong> (437)-247-9331</p>
+                <p><strong>Email:</strong> <a href="mailto:jaschahal93@gmail.com">jaschahal93@gmail.com</a></p>
+                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/justjaswinder/" target="_blank">https://www.linkedin.com/in/justjaswinder/</a></p>
+                <p><strong>Location:</strong> GTA, Ontario, Canada</p>
+            </div>
+            <div class="summary">
+                <h3>Summary</h3>
+                <p>5+ years of hands-on experience in Android Mobile Software Engineering. Currently working as an Android Developer Technology Analyst at Infosys Ltd, handling projects for USA and Canada clients. Expertise in Java, RxJava, Kotlin Coroutines, Android Jetpack Components, and Android frameworks. Strong commitment to delivering performant code and adhering to Android UI design principles across various devices, including TVs, Tablets, and Portable PDTs.</p>
+            </div>
         </section>
 
         <section id="skills" class="section">
-            <h2>Skills</h2>
+            <h2>Technical Skills</h2>
             <div class="skills">
-                <div class="skill">
-                    <h3>Languages</h3>
-                    <p>Java, Kotlin</p>
+                <ul>
+                    <li><strong>Domain:</strong> Native Android Mobile App Development</li>
+                    <li><strong>Tools & Frameworks:</strong> Android Studio, Jetpack Compose, Retrofit, RxJava, Kotlin Coroutines</li>
+                    <li><strong>UI/UX Design:</strong> XML, Compose, Material Design guidelines, Responsive UI</li>
+                    <li><strong>Version Control:</strong> Git, GitHub, Bitbucket</li>
+                    <li><strong>Programming Languages:</strong> Java, Kotlin, HTML, CSS, C, C++, Swift</li>
+                    <li><strong>Software Development Lifecycle:</strong> Agile Methodology, Scrum</li>
+                    <li><strong>Android App Testing:</strong> Espresso Testing, Unit Testing, Instrumentation Testing, Mockito</li>
+                    <li><strong>Data Persistence:</strong> SQLite, Room database</li>
+                    <li><strong>Development Tools:</strong> JIRA, Confluence, Bitbucket</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <h2>Professional Experience</h2>
+            <div class="experience">
+                <div>
+                    <p class="job-title">Android Developer (Technology Analyst) - Infosys Limited, Mississauga, Canada [Sep 2021 – Present]</p>
+                    <ul>
+                        <li>Actively engaged in client meetings at Infosys to ensure thorough comprehension of project objectives.</li>
+                        <li>Contributed to Android app development at CANADA POST, focusing on native Android development using Java and Kotlin.</li>
+                        <li>Implemented Jetpack components to enhance app performance.</li>
+                        <li>Designed and executed the photo capture system for the DIA app, enabling delivery personnel to take photos at the moment of parcel drop-off.</li>
+                        <li>Spearheaded the Saturday Weekend Delivery Project, aimed at expanding delivery services to include Saturdays.</li>
+                    </ul>
                 </div>
-                <div class="skill">
-                    <h3>Tools & Frameworks</h3>
-                    <p>Android Studio, Jetpack Compose, Retrofit, RxJava, Kotlin Coroutines</p>
-                </div>
-                <div class="skill">
-                    <h3>UI/UX Design</h3>
-                    <p>Figma, Material Design</p>
-                </div>
-                <div class="skill">
-                    <h3>Architecture</h3>
-                    <p>MVVM, MVI, Unidirectional Data Flow, Reactive Programming</p>
+                <div>
+                    <p class="job-title">Android Developer - AppsMaven-The Technology Experts [June 2017 – July 2019]</p>
+                    <ul>
+                        <li>Oversaw the comprehensive lifecycle of Android app development, emphasizing client satisfaction and team productivity.</li>
+                        <li>Developed "JMess!" a messenger app for Jalf.com with over 10k downloads, featuring multi-screen sizes, multi-language support, and real-time chat using Server-Sent Events (SSE).</li>
+                        <li>Built Android apps with streamlined back-end API integration, leveraging Eclipse, Android Studio, and various APIs.</li>
+                        <li>Deployed apps on the Android Marketplace, ensuring compatibility across different OS releases.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="section">
-            <h2>Projects</h2>
-            <div class="projects">
-                <div class="project">
-                    <h3>Project 1: WeatherApp</h3>
-                    <img src="images/weatherapp.png" alt="WeatherApp Screenshot">
-                    <p>A weather forecasting app using Kotlin and Jetpack Compose. Features real-time weather data, location-based forecasts, and a clean, intuitive UI.</p>
-                    <a href="https://github.com/username/weatherapp">View on GitHub</a>
-                </div>
-                <div class="project">
-                    <h3>Project 2: TaskManager</h3>
-                    <img src="images/taskmanager.png" alt="TaskManager Screenshot">
-                    <p>An Android app for task management, built with MVVM architecture and Jetpack libraries. Allows users to create, update, and organize tasks efficiently.</p>
-                    <a href="https://github.com/username/taskmanager">View on GitHub</a>
-                </div>
+        <section id="education" class="section">
+            <h2>Education</h2>
+            <div class="education">
+                <ul>
+                    <li class="degree"><strong>Post-Graduate Diploma in Mobile Applications Design & Development</strong> - Lambton College, Toronto, ON [May 2021]</li>
+                    <li class="degree"><strong>Bachelor of Technology in Computer Science & Engineering</strong> - Guru Nanak Dev Engineering College [May 2015]</li>
+                    <li class="degree"><strong>Diploma in Computer Science & Engineering</strong> - Guru Nanak Dev Polytechnic College [May 2012]</li>
+                </ul>
             </div>
         </section>
 
         <section id="contact" class="section">
             <h2>Contact Me</h2>
-            <p>If you're interested in working together or just want to say hi, feel free to reach out!</p>
-            <p>Email: <a href="mailto:jaswinder@example.com">jaswinder@example.com</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/jaswinder-singh/">linkedin.com/in/jaswinder-singh</a></p>
+            <p>If you're interested in working together or just want to connect, feel free to reach out!</p>
+            <p><strong>Email:</strong> <a href="mailto:jaschahal93@gmail.com">jaschahal93@gmail.com</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/justjaswinder/" target="_blank">linkedin.com/in/justjaswinder</a></p>
         </section>
     </div>
 
