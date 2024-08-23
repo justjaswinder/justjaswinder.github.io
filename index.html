@@ -106,13 +106,12 @@
     width: calc(100% * 3); /* Adjust based on the number of images */
     animation: slide 90s linear infinite; /* Adjust the duration for slower speed */
 }
-
 .showcase-wrapper img {
     width: 100%;
-     height: 20%; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */
+    min-height: 500px; /* Ensure image covers at least the height of the showcase */
     object-fit: cover; /* Cover the container without distortion */
-
-
+}
 
 /* Keyframes for animation */
 @keyframes slide {
