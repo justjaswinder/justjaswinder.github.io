@@ -88,6 +88,32 @@
         .projects a:hover {
             text-decoration: underline;
         }
+
+        /* Photo Showcase */
+        .photo-showcase {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background-color: #e9ecef;
+            padding: 20px 0;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .showcase-wrapper {
+            display: flex;
+            width: calc(100% * 3);
+            animation: slide 15s linear infinite;
+        }
+        .showcase-wrapper img {
+            width: 100%;
+            height: auto;
+        }
+        @keyframes slide {
+            0% { transform: translateX(0%); }
+            33% { transform: translateX(-100%); }
+            66% { transform: translateX(-200%); }
+            100% { transform: translateX(0%); }
+        }
+
         footer {
             background-color: #343a40;
             color: white;
@@ -109,6 +135,7 @@
         <a href="#experience">Experience</a>
         <a href="#education">Education</a>
         <a href="#projects">Projects</a>
+        <a href="#photos">Photos</a>
         <a href="#contact">Contact</a>
     </nav>
 
@@ -181,13 +208,22 @@
         </section>
 
         <section id="projects" class="section">
-            <h2>Learning Projects</h2>
+            <h2>Learning Repositories</h2>
             <div class="projects">
                 <ul>
-                    <li><strong>MoviesPlex:</strong> <a href="https://github.com/justjaswinder/MoviesPlex" target="_blank">GitHub Repository</a> - This app uses Retrofit, Room Database, and MVVM, with Jetpack Compose and Kotlin.</li>
-                    <li><strong>GraphQLDemoApp:</strong> <a href="https://github.com/justjaswinder/GraphQLDemoApp" target="_blank">GitHub Repository</a> - Implementation of GraphQL in Android App using Clean Architecture.</li>
-                    <li><strong>Weather App:</strong> <a href="https://github.com/justjaswinder/Weather_App" target="_blank">GitHub Repository</a> - Features dark theme, splash screen, MVVM architecture, Hilt for Dependency Injection, ROOM Database, Retrofit, Compose UI with different font styles, and Jetpack Navigation.</li>
+                    <li><a href="https://github.com/justjaswinder/MoviesPlex" target="_blank">MoviesPlex</a>: App using Retrofit, Room Database, MVVM, Jetpack Compose, and Kotlin.</li>
+                    <li><a href="https://github.com/justjaswinder/GraphQLDemoApp" target="_blank">GraphQLDemoApp</a>: Implementation of GraphQL in Android App using Clean Architecture.</li>
+                    <li><a href="https://github.com/justjaswinder/Weather_App" target="_blank">Weather App</a>: App with dark theme, splash screen, MVVM Architecture, Hilt for Dependency Injection, ROOM Database for local storage, Retrofit for remote data access, Compose UI with different font styles, and Jetpack Navigation.</li>
                 </ul>
+            </div>
+        </section>
+
+        <section id="photos" class="section photo-showcase">
+            <h2>Photo Showcase</h2>
+            <div class="showcase-wrapper">
+               <img src="images/photo1.jpg" alt="Project Screenshot 1">
+        <img src="images/photo2.jpg" alt="Project Screenshot 2">
+        <img src="images/photo3.jpg" alt="Project Screenshot 3">
             </div>
         </section>
 
