@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jaswinder Singh - Android Developer Portfolio</title>
     <style>
@@ -103,12 +104,13 @@
 .showcase-wrapper {
     display: flex;
     width: calc(100% * 3); /* Adjust based on the number of images */
-    animation: slide 90s linear infinite; /* Increased duration for slower speed */
+    animation: slide 90s linear infinite; /* Adjust the duration for slower speed */
 }
 
 .showcase-wrapper img {
     width: 100%;
-    height: auto;
+    height: 100%; /* Ensure the image height fits the showcase height */
+    object-fit: cover; /* Cover the entire container without distortion */
 }
 
 @keyframes slide {
