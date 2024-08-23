@@ -94,7 +94,7 @@
 .photo-showcase {
     position: relative;
     width: 100%;
-    height: 400px; /* Fixed height for the showcase */
+    height: 500px; /* Fixed height for the showcase */
     overflow: hidden;
     background-color: #e9ecef;
     padding: 20px 0;
@@ -103,14 +103,17 @@
 
 .showcase-wrapper {
     display: flex;
-    width: calc(100% * 3); /* Adjust based on the number of images */
+    width: 100%; /* Adjust width to fit the container */
+    height: 100%; /* Ensure wrapper takes the full height */
     animation: slide 90s linear infinite; /* Adjust the duration for slower speed */
 }
+
 .showcase-wrapper img {
-    width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    min-height: 500px; /* Ensure image covers at least the height of the showcase */
-    object-fit: cover; /* Cover the container without distortion */
+    width: auto; /* Maintain original width */
+    height: 100%; /* Ensure the image height fits the showcase height */
+    max-width: 100%; /* Ensure image does not exceed the container width */
+    object-fit: contain; /* Fit the image inside the container without distortion */
+    display: block; /* Remove space below the image */
 }
 
 /* Keyframes for animation */
