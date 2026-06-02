@@ -1,271 +1,918 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jaswinder Singh - Software Engineer Portfolio</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #343a40;
-        }
-        header {
-            background-color: #007bff;
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        header p {
-            margin: 10px 0;
-            font-size: 1.2em;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #343a40;
-        }
-        nav a {
-            color: white;
-            padding: 15px 20px;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-        nav a:hover {
-            background-color: #007bff;
-            color: white;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            overflow: hidden;
-        }
-        .section {
-            margin-bottom: 40px;
-        }
-        h2 {
-            text-align: center;
-            color: #007bff;
-            margin-bottom: 20px;
-        }
-        .contact-info {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .contact-info p {
-            margin: 5px 0;
-            font-size: 1.1em;
-        }
-        .summary, .skills, .experience, .education, .projects {
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-        .skills ul, .experience ul, .education ul, .projects ul {
-            list-style: none;
-            padding: 0;
-        }
-        .skills li, .experience li, .education li, .projects li {
-            margin-bottom: 10px;
-        }
-        .experience .job-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .education .degree {
-            font-weight: bold;
-        }
-        .projects a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .projects a:hover {
-            text-decoration: underline;
-        }
-
-        /* Photo Showcase */
-.photo-showcase {
-    position: relative;
-    width: 100%;
-    height: 500px; /* Fixed height for the showcase */
-    overflow: hidden;
-    background-color: #e9ecef;
-    padding: 20px 0;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-
-.showcase-wrapper {
- 
-    display: flex;
-    width: 400%; /* Adjust width to fit the container */
-    height: 100%; /* Ensure wrapper takes the full height */
-    animation: slide 30s linear infinite; /* Adjust the duration for slower speed */
-
-}
-
-.showcase-wrapper img {
-    width: auto; /* Maintain original width */
-    height: 100%; /* Ensure the image height fits the showcase height */
-    max-width: 100%; /* Ensure image does not exceed the container width */
-    object-fit: contain; /* Fit the image inside the container without distortion */
-    display: block; /* Remove space below the image */
-}
-
-/* Keyframes for animation */
-        @keyframes slide {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-100%); } /* Move from 0% to -100% */
-}
-
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .photo-showcase {
-        height: 300px; /* Adjust the height of the photo showcase for smaller screens */
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaswinder Singh Chahal — Android Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface2: #18181f;
+      --accent: #5b6ef5;
+      --accent2: #00e5c3;
+      --text: #e8e8f0;
+      --muted: #6b6b80;
+      --border: #1e1e2a;
+      --white: #f0f0ff;
     }
-     .showcase-wrapper {
-        width: 500%; /* Adjust based on the number of images */
-    }
-}
 
-@media (max-width: 480px) {
-    .photo-showcase {
-        height: 200px; /* Further adjust the height of the photo showcase for very small screens */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      overflow-x: hidden;
+      cursor: none;
     }
-     .showcase-wrapper {
-        width: 500%; /* Adjust based on the number of images */
+
+    /* ── CUSTOM CURSOR ── */
+    .cursor {
+      width: 12px; height: 12px;
+      background: var(--accent2);
+      border-radius: 50%;
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease, opacity 0.3s;
+      mix-blend-mode: screen;
     }
-}
-        footer {
-            background-color: #343a40;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            margin-top: 20px;
-        }
-    </style>
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.4s cubic-bezier(.16,1,.3,1), width 0.3s, height 0.3s;
+      opacity: 0.6;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.35;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s, backdrop-filter 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(20px);
+      border-color: var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent2); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent2); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+      opacity: 0.4;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,110,245,0.15) 0%, transparent 70%);
+      top: 50%; left: 30%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero-left { position: relative; z-index: 2; }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 32px;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent2);
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+    h1.hero-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 0.95;
+      color: var(--white);
+      margin-bottom: 8px;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+    h1.hero-name .accent { color: var(--accent); }
+    .hero-role {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.5vw, 2rem);
+      color: var(--muted);
+      margin-bottom: 32px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .hero-desc {
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: #4a5de0; transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 14px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--accent2); color: var(--accent2); transform: translateY(-2px); }
+
+    .hero-right {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .stat-card:hover { border-color: var(--accent); transform: translateX(4px); }
+    .stat-icon {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--accent), #7c8ff7);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.68rem; color: var(--muted); margin-top: 4px; letter-spacing: 0.05em; }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-tag::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--accent2);
+    }
+    h2.section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--white);
+      margin-bottom: 60px;
+      line-height: 1.1;
+    }
+
+    /* ── SKILLS ── */
+    #skills { border-top: 1px solid var(--border); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .skill-block {
+      background: var(--surface);
+      padding: 32px;
+      transition: background 0.3s;
+    }
+    .skill-block:hover { background: var(--surface2); }
+    .skill-block-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .skill-tag {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 100px;
+      font-size: 0.68rem;
+      color: var(--text);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-tag:hover { border-color: var(--accent2); color: var(--accent2); }
+
+    /* ── EXPERIENCE ── */
+    #experience { border-top: 1px solid var(--border); }
+    .timeline { position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline-item {
+      padding-left: 40px;
+      margin-bottom: 64px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .timeline-item.visible { opacity: 1; transform: translateY(0); }
+    .timeline-dot {
+      position: absolute;
+      left: -5px; top: 8px;
+      width: 11px; height: 11px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+    }
+    .timeline-period {
+      font-size: 0.65rem;
+      color: var(--accent2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .timeline-role {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .timeline-company {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .timeline-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .timeline-feature {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-size: 0.72rem;
+      line-height: 1.6;
+      color: var(--muted);
+      transition: border-color 0.2s;
+    }
+    .timeline-feature:hover { border-color: var(--accent); }
+    .timeline-feature strong { color: var(--text); display: block; margin-bottom: 4px; font-family: 'Syne', sans-serif; font-size: 0.78rem; }
+
+    /* ── PROJECTS ── */
+    #projects { border-top: 1px solid var(--border); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color 0.3s, transform 0.3s;
+      text-decoration: none;
+    }
+    .project-card:hover { border-color: var(--accent2); transform: translateY(-4px); }
+    .project-card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .project-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--surface2), var(--border));
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .project-arrow { color: var(--muted); font-size: 1.2rem; transition: color 0.2s, transform 0.2s; }
+    .project-card:hover .project-arrow { color: var(--accent2); transform: translate(3px, -3px); }
+    .project-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--white);
+    }
+    .project-desc { font-size: 0.72rem; color: var(--muted); line-height: 1.7; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+    .project-tech {
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(91,110,245,0.1);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    /* ── EDUCATION ── */
+    #education { border-top: 1px solid var(--border); }
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      transition: border-color 0.3s;
+    }
+    .edu-card:hover { border-color: var(--accent); }
+    .edu-year {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 10px;
+    }
+    .edu-degree {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .edu-school { font-size: 0.72rem; color: var(--muted); }
+
+    /* ── CONTACT ── */
+    #contact {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+    .contact-headline {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    .contact-headline em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      color: var(--accent);
+    }
+    .contact-sub { font-size: 0.78rem; color: var(--muted); margin-bottom: 48px; line-height: 1.8; }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 14px 24px;
+      border-radius: 100px;
+      text-decoration: none;
+      font-size: 0.72rem;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent2); color: var(--accent2); transform: translateY(-2px); }
+    .contact-link-icon { font-size: 1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 60px; }
+      section { padding: 70px 24px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Jaswinder Singh</h1>
-        <p>Software Engineer | Technology Analyst</p>
-    </header>
 
-    <nav>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#projects">Projects</a>
-        <a href="#photos">Photos</a>
-        <a href="#contact">Contact</a>
-    </nav>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-    <div class="container">
-        <section id="about" class="section">
-            <h2>About Me</h2>
-            <div class="contact-info">
-                <p><strong>Contact No:</strong> (437)-247-9331</p>
-                <p><strong>Email:</strong> <a href="mailto:jaschahal93@gmail.com">jaschahal93@gmail.com</a></p>
-                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/justjaswinder/" target="_blank">https://www.linkedin.com/in/justjaswinder/</a></p>
-                <p><strong>Location:</strong> GTA, Ontario, Canada</p>
-            </div>
-            <div class="summary">
-                <h3>Summary</h3>
-                <p>5+ years of hands-on experience in Android Mobile Software Engineering. Currently working as an Android Developer Technology Analyst at Infosys Ltd, handling projects for USA and Canada clients. Expertise in Java, RxJava, Kotlin Coroutines, Android Jetpack Components, and Android frameworks. Strong commitment to delivering performant code and adhering to Android UI design principles across various devices, including TVs, Tablets, and Portable PDTs.</p>
-            </div>
-        </section>
-      <section id="photos" class="section photo-showcase">
-            <h2>Projects Showcase</h2>
-            <div class="showcase-wrapper">
-                  <img src="images/image_dia.png" alt="Project Screenshot 1">
-                  <img src="images/image_jalf.png" alt="Project Screenshot 2">
-               <img src="images/image_movie.png" alt="Project Screenshot 3">
-                       <img src="images/image_weather.png" alt="Project Screenshot 4">
-                   <img src="images/image4.png" alt="Project Screenshot 5">
-            </div>
-        </section>
-        <section id="skills" class="section">
-            <h2>Technical Skills</h2>
-            <div class="skills">
-                <ul>
-                    <li><strong>Domain:</strong> Native Android Mobile App Development</li>
-                    <li><strong>Tools & Frameworks:</strong> Android Studio, Jetpack Compose, Retrofit, RxJava, Kotlin Coroutines</li>
-                    <li><strong>UI/UX Design:</strong> XML, Compose, Material Design guidelines, Responsive UI, MUI</li>
-                    <li><strong>Version Control:</strong> Git, GitHub, Bitbucket</li>
-                    <li><strong>Programming Languages:</strong>Python, Javascript, PHP, Java, Kotlin, HTML, CSS, C, C++, Swift</li>
-                    <li><strong>Software Development Lifecycle:</strong>Django, Next.js, Vue.js, Laravel, Agile Methodology, Scrum</li>
-                    <li><strong>Android App Testing:</strong> Espresso Testing, Unit Testing, Instrumentation Testing, Mockito</li>
-                    <li><strong>Data Persistence:</strong>MySQL, PostgreSQL, MongoDB SQLite, Room database</li>
-                    <li><strong>Development Tools:</strong> JIRA, Confluence, Bitbucket</li>
-                </ul>
-            </div>
-        </section>
+  <!-- NAV -->
+  <nav id="navbar">
+    <a class="nav-logo" href="#">JAS<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-        <section id="experience" class="section">
-            <h2>Professional Experience</h2>
-            <div class="experience">
-                <div>
-                    <p class="job-title">Android Developer (Technology Analyst) - Infosys Limited, Mississauga, Canada [Sep 2021 – Present]</p>
-                    <ul>
-                        <li>Actively engaged in client meetings at Infosys to ensure thorough comprehension of project objectives.</li>
-                        <li>Contributed to Android app development at CANADA POST, focusing on native Android development using Java and Kotlin.</li>
-                        <li>Implemented Jetpack components to enhance app performance.</li>
-                        <li>Designed and executed the photo capture system for the DIA app, enabling delivery personnel to take photos at the moment of parcel drop-off.</li>
-                        <li>Spearheaded the Saturday Weekend Delivery Project, aimed at expanding delivery services to include Saturdays.</li>
-                    </ul>
-                </div>
-                <div>
-                    <p class="job-title">Android Developer - AppsMaven-The Technology Experts [June 2017 – July 2019]</p>
-                    <ul>
-                        <li>Oversaw the comprehensive lifecycle of Android app development, emphasizing client satisfaction and team productivity.</li>
-                        <li>Developed "JMess!" a messenger app for Jalf.com with over 10k downloads, featuring multi-screen sizes, multi-language support, and real-time chat using Server-Sent Events (SSE).</li>
-                        <li>Built Android apps with streamlined back-end API integration, leveraging Eclipse, Android Studio, and various APIs.</li>
-                        <li>Deployed apps on the Android Marketplace, ensuring compatibility across different OS releases.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="education" class="section">
-            <h2>Education</h2>
-            <div class="education">
-                <ul>
-                    <li class="degree"><strong>Post-Graduate Diploma in Mobile Applications Design & Development</strong> - Lambton College, Toronto, ON [May 2021]</li>
-                    <li class="degree"><strong>Bachelor of Technology in Computer Science & Engineering</strong> - Guru Nanak Dev Engineering College [May 2015]</li>
-                    <li class="degree"><strong>Diploma in Computer Science & Engineering</strong> - Guru Nanak Dev Polytechnic College [May 2012]</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="projects" class="section">
-            <h2>Learning Repositories</h2>
-            <div class="projects">
-                <ul>
-                    <li><a href="https://github.com/justjaswinder/MoviesPlex" target="_blank">MoviesPlex</a>: App using Retrofit, Room Database, MVVM, Jetpack Compose, and Kotlin.</li>
-                    <li><a href="https://github.com/justjaswinder/GraphQLDemoApp" target="_blank">GraphQLDemoApp</a>: Implementation of GraphQL in Android App using Clean Architecture.</li>
-                    <li><a href="https://github.com/justjaswinder/Weather_App" target="_blank">Weather App</a>: App with dark theme, splash screen, MVVM Architecture, Hilt for Dependency Injection, ROOM Database for local storage, Retrofit for remote data access, Compose UI with different font styles, and Jetpack Navigation.</li>
-                </ul>
-            </div>
-        </section>
-
-  
-
-        <section id="contact" class="section">
-            <h2>Contact</h2>
-            <p>If you are interested in working with me or have any questions, feel free to reach out via email or LinkedIn.</p>
-        </section>
+  <!-- HERO -->
+  <div id="hero" style="max-width:100%; padding-left:max(48px,5vw); padding-right:max(48px,5vw);">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-left">
+      <div class="hero-tag">Available for new roles</div>
+      <h1 class="hero-name">Jaswinder<br><span class="accent">Singh</span><br>Chahal</h1>
+      <p class="hero-role">Android Engineer</p>
+      <p class="hero-desc">
+        5+ years building high-performance Android apps at scale — from fintech at PayPal to logistics at Canada Post.
+        Kotlin-first. Compose-native. Obsessed with clean architecture and delightful UX.
+      </p>
+      <div class="hero-cta">
+        <a class="btn-primary" href="mailto:jaschahal93@gmail.com">↗ Get in touch</a>
+        <a class="btn-outline" href="https://linkedin.com/in/justjaswinder" target="_blank">LinkedIn ↗</a>
+        <a class="btn-outline" href="https://github.com/justjaswinder" target="_blank">GitHub ↗</a>
+      </div>
     </div>
+    <div class="hero-right">
+      <div class="stat-card">
+        <div class="stat-icon">📱</div>
+        <div>
+          <div class="stat-num">200M+</div>
+          <div class="stat-label">Users reached via PayPal Android</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🚀</div>
+        <div>
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Years Android engineering</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⚡</div>
+        <div>
+          <div class="stat-num">10K+</div>
+          <div class="stat-label">Downloads — JMess! Messenger app</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🏗️</div>
+        <div>
+          <div class="stat-num">OSLO</div>
+          <div class="stat-label">PayPal monorepo — Jetpack Compose at scale</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <footer>
-        <p>&copy; 2024 Jaswinder Singh. All Rights Reserved.</p>
-    </footer>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-tag">Toolkit</div>
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <div class="skill-block-label">Core Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Kotlin</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">Swift</span>
+          <span class="skill-tag">Python</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">Android UI</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Jetpack Compose</span>
+          <span class="skill-tag">XML Layouts</span>
+          <span class="skill-tag">Material Design 3</span>
+          <span class="skill-tag">Animations</span>
+          <span class="skill-tag">Navigation</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">Architecture</div>
+        <div class="skill-tags">
+          <span class="skill-tag">MVVM</span>
+          <span class="skill-tag">MVI</span>
+          <span class="skill-tag">Repository</span>
+          <span class="skill-tag">Hilt DI</span>
+          <span class="skill-tag">Clean Arch</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">Async / Reactive</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Coroutines</span>
+          <span class="skill-tag">Flow</span>
+          <span class="skill-tag">StateFlow</span>
+          <span class="skill-tag">RxJava</span>
+          <span class="skill-tag">LiveData</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">Networking & Data</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Retrofit</span>
+          <span class="skill-tag">OkHttp</span>
+          <span class="skill-tag">GraphQL</span>
+          <span class="skill-tag">Room</span>
+          <span class="skill-tag">Paging 3</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">Testing & Observability</div>
+        <div class="skill-tags">
+          <span class="skill-tag">JUnit</span>
+          <span class="skill-tag">Mockito</span>
+          <span class="skill-tag">Espresso</span>
+          <span class="skill-tag">Datadog</span>
+          <span class="skill-tag">Instrumentation</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">Payments</div>
+        <div class="skill-tags">
+          <span class="skill-tag">PayPal SDK</span>
+          <span class="skill-tag">Stripe</span>
+          <span class="skill-tag">Razorpay</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">Tools & CI/CD</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Android Studio</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">GitHub</span>
+          <span class="skill-tag">Bitbucket</span>
+          <span class="skill-tag">JIRA</span>
+          <span class="skill-tag">Figma</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-tag">Career</div>
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">Oct 2024 — Present</div>
+        <div class="timeline-role">Android Engineer</div>
+        <div class="timeline-company">PayPal · Toronto, Canada · Full-time</div>
+        <div class="timeline-features">
+          <div class="timeline-feature">
+            <strong>OSLO Monorepo</strong>
+            PayPal's Kotlin + Jetpack Compose unified codebase serving 200M+ users globally.
+          </div>
+          <div class="timeline-feature">
+            <strong>In-App Browser</strong>
+            Designed end-to-end browser experience with session management, deep linking & secure URL handling.
+          </div>
+          <div class="timeline-feature">
+            <strong>Compose UI Kit</strong>
+            Built reusable, theme-aware Compose components for the shopping surface — pixel-perfect from Figma to prod.
+          </div>
+          <div class="timeline-feature">
+            <strong>Release Engineering</strong>
+            Managed bi-weekly releases; monitored crash rates, ANRs & API latency via Datadog.
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">Sep 2021 — Jun 2024</div>
+        <div class="timeline-role">Android Developer (Technology Analyst)</div>
+        <div class="timeline-company">Infosys Limited · Canada Post · Mississauga, Canada</div>
+        <div class="timeline-features">
+          <div class="timeline-feature">
+            <strong>Photo Confirmation</strong>
+            CameraX + Room + REST upload — built for low-connectivity field conditions across thousands of delivery personnel.
+          </div>
+          <div class="timeline-feature">
+            <strong>Weekend Delivery</strong>
+            First-ever Saturday delivery scheduling on Canada Post's mobile platform, shipped across Quebec regions.
+          </div>
+          <div class="timeline-feature">
+            <strong>Jetpack Stack</strong>
+            Navigation, Paging 3, ViewModel, LiveData — production-grade architecture for mission-critical logistics ops.
+          </div>
+          <div class="timeline-feature">
+            <strong>Bug Triage & PDT</strong>
+            Led app support & bug triage, maintaining operational continuity across field users nationwide.
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">Jun 2017 — Jul 2019</div>
+        <div class="timeline-role">Android Developer</div>
+        <div class="timeline-company">AppsMaven — The Technology Experts · Remote</div>
+        <div class="timeline-features">
+          <div class="timeline-feature">
+            <strong>JMess! Messenger</strong>
+            10K+ downloads. Real-time chat via SSE, multi-language, multi-screen — built end-to-end for Jalf.com.
+          </div>
+          <div class="timeline-feature">
+            <strong>Full-Cycle Ownership</strong>
+            Architecture to Play Store deployment across multiple client verticals using Java, Kotlin & RxJava.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-tag">Side Projects</div>
+    <h2 class="section-title">Learning Repositories</h2>
+    <div class="projects-grid">
+      <a class="project-card" href="https://github.com/justjaswinder/MoviesPlex" target="_blank">
+        <div class="project-card-top">
+          <div class="project-icon">🎬</div>
+          <div class="project-arrow">↗</div>
+        </div>
+        <div class="project-name">MoviesPlex</div>
+        <div class="project-desc">Full-featured movie browser built with Jetpack Compose and MVVM. Includes Retrofit for remote data, Room for local caching, and clean architecture layering.</div>
+        <div class="project-stack">
+          <span class="project-tech">Compose</span>
+          <span class="project-tech">MVVM</span>
+          <span class="project-tech">Retrofit</span>
+          <span class="project-tech">Room</span>
+          <span class="project-tech">Kotlin</span>
+        </div>
+      </a>
+      <a class="project-card" href="https://github.com/justjaswinder/GraphQLDemoApp" target="_blank">
+        <div class="project-card-top">
+          <div class="project-icon">🔗</div>
+          <div class="project-arrow">↗</div>
+        </div>
+        <div class="project-name">GraphQLDemoApp</div>
+        <div class="project-desc">Android implementation of GraphQL with clean architecture. Demonstrates efficient data fetching patterns as an alternative to REST for complex data graphs.</div>
+        <div class="project-stack">
+          <span class="project-tech">GraphQL</span>
+          <span class="project-tech">Clean Arch</span>
+          <span class="project-tech">Kotlin</span>
+        </div>
+      </a>
+      <a class="project-card" href="https://github.com/justjaswinder/Weather_App" target="_blank">
+        <div class="project-card-top">
+          <div class="project-icon">🌤️</div>
+          <div class="project-arrow">↗</div>
+        </div>
+        <div class="project-name">Weather App</div>
+        <div class="project-desc">Dark-themed weather app with Compose UI, Hilt for DI, Room for local storage, Retrofit for live data, and Jetpack Navigation with custom typography.</div>
+        <div class="project-stack">
+          <span class="project-tech">Compose</span>
+          <span class="project-tech">Hilt</span>
+          <span class="project-tech">Room</span>
+          <span class="project-tech">MVVM</span>
+          <span class="project-tech">Navigation</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-tag">Background</div>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-year">2019 – 2021</div>
+        <div class="edu-degree">Post-Graduate Diploma — Mobile Applications Design & Development</div>
+        <div class="edu-school">Lambton College at Cestar College · Toronto, ON</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">May 2015</div>
+        <div class="edu-degree">B.Tech — Computer Science & Engineering</div>
+        <div class="edu-school">Guru Nanak Dev Engineering College</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">May 2012</div>
+        <div class="edu-degree">Diploma — Computer Science & Engineering</div>
+        <div class="edu-school">Guru Nanak Dev Polytechnic College</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="max-width:100%; padding-left:max(48px,5vw); padding-right:max(48px,5vw);">
+    <div class="section-tag" style="justify-content:center;">Contact</div>
+    <div class="contact-headline">Let's build<br>something <em>great.</em></div>
+    <p class="contact-sub">
+      Open to remote Android roles with Canada &amp; US-based companies.<br>
+      Toronto, ON · Available now.
+    </p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:jaschahal93@gmail.com">
+        <span class="contact-link-icon">✉</span> jaschahal93@gmail.com
+      </a>
+      <a class="contact-link" href="tel:4372479331">
+        <span class="contact-link-icon">📞</span> (437) 247-9331
+      </a>
+      <a class="contact-link" href="https://linkedin.com/in/justjaswinder" target="_blank">
+        <span class="contact-link-icon">💼</span> LinkedIn
+      </a>
+      <a class="contact-link" href="https://github.com/justjaswinder" target="_blank">
+        <span class="contact-link-icon">🐙</span> GitHub
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025 Jaswinder Singh Chahal</span>
+    <span>Android Engineer · Toronto, ON</span>
+  </footer>
+
+  <script>
+    // Cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animateCursor() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+      ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.borderColor = 'var(--accent2)'; });
+      el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'var(--accent)'; });
+    });
+
+    // Navbar on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Scroll-triggered timeline
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 120);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
