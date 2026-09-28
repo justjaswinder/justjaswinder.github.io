@@ -3,9 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jaswinder Singh Chahal — Android Engineer</title>
+  <title>Jaswinder Singh Chahal — Senior Android Engineer</title>
+  <meta name="description" content="Senior Android Engineer (Kotlin, Jetpack Compose, Clean Architecture). Toptal Top 3% vetted. Built PayPal Android features for 200M+ users and offline-first field apps for Canada Post.">
+  <meta property="og:title" content="Jaswinder Singh Chahal — Senior Android Engineer">
+  <meta property="og:description" content="Kotlin-first, Compose-native Android engineer. PayPal · Canada Post · Toptal Top 3%.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0a0a0f">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js');</script>
   <style>
     :root {
       --bg: #0a0a0f;
@@ -14,24 +21,39 @@
       --accent: #5b6ef5;
       --accent2: #00e5c3;
       --text: #e8e8f0;
-      --muted: #6b6b80;
+      --muted: #8a8aa0;
       --border: #1e1e2a;
       --white: #f0f0ff;
+      --toptal: #204ecf;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'DM Mono', monospace;
       overflow-x: hidden;
-      cursor: none;
     }
 
-    /* ── CUSTOM CURSOR ── */
+    a:focus-visible { outline: 2px solid var(--accent2); outline-offset: 3px; border-radius: 6px; }
+
+    .skip-link {
+      position: absolute; left: -999px; top: 8px;
+      background: var(--accent); color: #fff; padding: 8px 14px; border-radius: 6px; z-index: 10000;
+      font-size: 0.75rem; text-decoration: none;
+    }
+    .skip-link:focus { left: 8px; }
+
+    /* ── CUSTOM CURSOR (mouse / trackpad only) ── */
+    .cursor, .cursor-ring { display: none; }
+    @media (hover: hover) and (pointer: fine) {
+      body { cursor: none; }
+      a, button { cursor: none; }
+      .cursor, .cursor-ring { display: block; }
+    }
     .cursor {
       width: 12px; height: 12px;
       background: var(--accent2);
@@ -40,7 +62,7 @@
       top: 0; left: 0;
       pointer-events: none;
       z-index: 9999;
-      transition: transform 0.15s ease, opacity 0.3s;
+      transition: opacity 0.3s;
       mix-blend-mode: screen;
     }
     .cursor-ring {
@@ -51,7 +73,7 @@
       top: 0; left: 0;
       pointer-events: none;
       z-index: 9998;
-      transition: transform 0.4s cubic-bezier(.16,1,.3,1), width 0.3s, height 0.3s;
+      transition: width 0.3s, height 0.3s, margin 0.3s, border-color 0.3s;
       opacity: 0.6;
     }
 
@@ -74,6 +96,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 24px;
       padding: 20px 48px;
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s, background 0.3s, backdrop-filter 0.3s;
@@ -81,6 +104,7 @@
     nav.scrolled {
       background: rgba(10,10,15,0.85);
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-color: var(--border);
     }
     .nav-logo {
@@ -90,6 +114,7 @@
       color: var(--white);
       letter-spacing: 0.05em;
       text-decoration: none;
+      flex-shrink: 0;
     }
     .nav-logo span { color: var(--accent2); }
     .nav-links { display: flex; gap: 32px; list-style: none; }
@@ -100,16 +125,18 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       transition: color 0.2s;
+      white-space: nowrap;
     }
-    .nav-links a:hover { color: var(--accent2); }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent2); }
 
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 48px;
       align-items: center;
-      padding: 120px 48px 80px;
+      padding: 120px max(48px, 5vw) 80px;
       position: relative;
       overflow: hidden;
     }
@@ -120,6 +147,7 @@
         linear-gradient(var(--border) 1px, transparent 1px),
         linear-gradient(90deg, var(--border) 1px, transparent 1px);
       background-size: 60px 60px;
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
       opacity: 0.4;
     }
@@ -132,6 +160,7 @@
       pointer-events: none;
     }
     .hero-left { position: relative; z-index: 2; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; animation: fadeUp 0.8s ease both; }
     .hero-tag {
       display: inline-flex;
       align-items: center;
@@ -144,16 +173,17 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--accent2);
-      margin-bottom: 32px;
-      animation: fadeUp 0.8s ease both;
+      text-decoration: none;
     }
-    .hero-tag::before {
+    .hero-tag.live::before {
       content: '';
       width: 6px; height: 6px;
       background: var(--accent2);
       border-radius: 50%;
       animation: pulse 2s ease infinite;
     }
+    .hero-tag.toptal { color: #7fb2ff; border-color: rgba(37,169,239,0.35); }
+    .hero-tag.toptal:hover { border-color: #25a9ef; }
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.7); }
@@ -180,10 +210,11 @@
       font-size: 0.8rem;
       line-height: 1.8;
       color: var(--muted);
-      max-width: 480px;
+      max-width: 500px;
       margin-bottom: 48px;
       animation: fadeUp 0.8s 0.3s ease both;
     }
+    .hero-desc strong { color: var(--text); font-weight: 400; }
     .hero-cta {
       display: flex;
       gap: 16px;
@@ -202,7 +233,6 @@
       font-size: 0.72rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      font-weight: 400;
       transition: background 0.2s, transform 0.2s;
     }
     .btn-primary:hover { background: #4a5de0; transform: translateY(-2px); }
@@ -225,8 +255,8 @@
     .hero-right {
       position: relative;
       z-index: 2;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 16px;
       animation: fadeUp 0.8s 0.5s ease both;
     }
@@ -234,22 +264,21 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 24px 28px;
+      padding: 22px 24px;
       display: flex;
-      align-items: center;
-      gap: 20px;
+      flex-direction: column;
+      gap: 14px;
       transition: border-color 0.3s, transform 0.3s;
     }
-    .stat-card:hover { border-color: var(--accent); transform: translateX(4px); }
+    .stat-card:hover { border-color: var(--accent); transform: translateY(-3px); }
     .stat-icon {
-      width: 44px; height: 44px;
+      width: 40px; height: 40px;
       background: linear-gradient(135deg, var(--accent), #7c8ff7);
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
+      font-size: 1.1rem;
     }
     .stat-num {
       font-family: 'Syne', sans-serif;
@@ -258,7 +287,7 @@
       color: var(--white);
       line-height: 1;
     }
-    .stat-label { font-size: 0.68rem; color: var(--muted); margin-top: 4px; letter-spacing: 0.05em; }
+    .stat-label { font-size: 0.68rem; color: var(--muted); margin-top: 6px; letter-spacing: 0.04em; line-height: 1.5; }
 
     /* ── SECTION COMMON ── */
     section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
@@ -286,11 +315,50 @@
       line-height: 1.1;
     }
 
+    /* ── CREDENTIALS / TOPTAL ── */
+    #credentials { border-top: 1px solid var(--border); padding-top: 80px; padding-bottom: 80px; }
+    .cred-wrap {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 56px;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(37,169,239,0.06), rgba(91,110,245,0.04));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px;
+    }
+    .cred-copy h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 3vw, 2.3rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .cred-copy h2 em { font-family: 'Instrument Serif', serif; color: #7fb2ff; }
+    .cred-copy p { font-size: 0.78rem; color: var(--muted); line-height: 1.8; max-width: 560px; margin-bottom: 24px; }
+    .cred-steps { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+    .cred-steps li {
+      font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text); background: var(--bg); border: 1px solid var(--border);
+      padding: 6px 12px; border-radius: 100px;
+    }
+    .cred-steps li::before { content: '✓ '; color: var(--accent2); }
+
+    /* Toptal badge — official markup, styles scoped so they can't clash with the site */
+    #r { font-family: proxima-nova, Arial, sans-serif; filter: drop-shadow(0 20px 40px rgba(0,120,255,0.18)); }
+    #r .h { --h: polygon(50% 0,100% 24%,100% 76%,50% 100%,0 76%,0 24%); display: inline-block; background: #25a9ef; padding: 6px; clip-path: var(--h); }
+    #r .a { width: 200px; padding: 24px 0 40px; display: flex; flex-direction: column; align-items: center; gap: 8px; color: #204ecf; text-align: center; background: radial-gradient(circle at 20% -10%,#00c3ff -80%,#fff 30%),radial-gradient(circle at -20% 20%,#00c3ff -80%,#fff 30%),radial-gradient(circle at 70% 100%,#00c3ff -80%,#fff 30%),radial-gradient(circle at 120% 80%,#00c3ff -80%,#fff 30%); background-blend-mode: multiply; clip-path: var(--h); }
+    #r .b { margin: 0; font-size: 19px; font-weight: 700; line-height: 1; font-family: proxima-nova, Arial, sans-serif; }
+    #r .c { width: 120px; height: 1px; background: #25a9ef; }
+    #r .d { font-size: 16px; margin-bottom: -6px; }
+    #r .f { display: inline-flex; align-items: center; justify-content: center; padding: 4px 20px; border-radius: 6px; background: #296bff; color: #fff; font-size: 16px; font-weight: 500; text-decoration-thickness: .5px; text-underline-offset: 2px; font-family: proxima-nova, Arial, sans-serif; }
+
     /* ── SKILLS ── */
     #skills { border-top: 1px solid var(--border); }
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
       gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
@@ -310,11 +378,7 @@
       color: var(--accent);
       margin-bottom: 16px;
     }
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .skill-tag {
       background: var(--bg);
       border: 1px solid var(--border);
@@ -340,11 +404,10 @@
       padding-left: 40px;
       margin-bottom: 64px;
       position: relative;
-      opacity: 0;
-      transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .timeline-item.visible { opacity: 1; transform: translateY(0); }
+    .js .timeline-item { opacity: 0; transform: translateY(20px); }
+    .js .timeline-item.visible { opacity: 1; transform: translateY(0); }
     .timeline-dot {
       position: absolute;
       left: -5px; top: 8px;
@@ -374,7 +437,7 @@
     }
     .timeline-features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
       gap: 12px;
       margin-bottom: 20px;
     }
@@ -390,12 +453,13 @@
     }
     .timeline-feature:hover { border-color: var(--accent); }
     .timeline-feature strong { color: var(--text); display: block; margin-bottom: 4px; font-family: 'Syne', sans-serif; font-size: 0.78rem; }
+    .timeline-stack { display: flex; flex-wrap: wrap; gap: 8px; }
 
     /* ── PROJECTS ── */
     #projects { border-top: 1px solid var(--border); }
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
       gap: 20px;
     }
     .project-card {
@@ -430,12 +494,12 @@
       color: var(--white);
     }
     .project-desc { font-size: 0.72rem; color: var(--muted); line-height: 1.7; }
-    .project-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
     .project-tech {
       font-size: 0.62rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: #8b98ff;
       background: rgba(91,110,245,0.1);
       padding: 3px 10px;
       border-radius: 100px;
@@ -443,7 +507,7 @@
 
     /* ── EDUCATION ── */
     #education { border-top: 1px solid var(--border); }
-    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px; }
     .edu-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -473,9 +537,10 @@
     #contact {
       border-top: 1px solid var(--border);
       text-align: center;
-      padding-top: 80px;
-      padding-bottom: 80px;
+      padding: 80px max(48px, 5vw);
+      max-width: 100%;
     }
+    #contact .section-tag { justify-content: center; }
     .contact-headline {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
@@ -510,6 +575,7 @@
       transition: border-color 0.2s, color 0.2s, transform 0.2s;
     }
     .contact-link:hover { border-color: var(--accent2); color: var(--accent2); transform: translateY(-2px); }
+    .contact-link.toptal:hover { border-color: #25a9ef; color: #7fb2ff; }
     .contact-link-icon { font-size: 1rem; }
 
     /* ── FOOTER ── */
@@ -536,24 +602,51 @@
     ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      #hero { grid-template-columns: 1fr; gap: 56px; }
+      .cred-wrap { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 36px; padding: 40px 28px; }
+      .cred-copy p { margin-left: auto; margin-right: auto; }
+      .cred-steps { justify-content: center; }
+    }
     @media (max-width: 768px) {
-      nav { padding: 16px 24px; }
-      .nav-links { display: none; }
-      #hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 60px; }
-      section { padding: 70px 24px; }
-      footer { flex-direction: column; gap: 8px; text-align: center; }
+      nav { padding: 14px 16px; }
+      .nav-links { gap: 18px; overflow-x: auto; scrollbar-width: none; }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links a { font-size: 0.62rem; }
+      #hero { padding: 100px 16px 60px; }
+      .hero-right { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .stat-card { padding: 18px; }
+      .stat-num { font-size: 1.3rem; }
+      section { padding: 70px 16px; }
+      #contact { padding: 70px 16px; }
+      .skill-block { padding: 24px; }
+      .project-card { padding: 24px; }
+      .timeline-item { padding-left: 28px; }
+      .btn-primary, .btn-outline { padding: 13px 20px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px 16px; }
+    }
+    @media (max-width: 420px) {
+      .nav-links li:nth-child(n+4) { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .timeline-item { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
 
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
   <!-- NAV -->
-  <nav id="navbar">
+  <nav id="navbar" aria-label="Main">
     <a class="nav-logo" href="#">JAS<span>.</span></a>
     <ul class="nav-links">
+      <li><a href="#credentials">Toptal</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -562,55 +655,86 @@
     </ul>
   </nav>
 
+  <main id="main">
+
   <!-- HERO -->
-  <div id="hero" style="max-width:100%; padding-left:max(48px,5vw); padding-right:max(48px,5vw);">
+  <div id="hero">
     <div class="hero-grid-bg"></div>
     <div class="hero-glow"></div>
     <div class="hero-left">
-      <div class="hero-tag">Available for new roles</div>
+      <div class="hero-tags">
+        <span class="hero-tag live">Open to permanent &amp; contract roles</span>
+        <a class="hero-tag toptal" href="#credentials">★ Toptal Top 3%</a>
+      </div>
       <h1 class="hero-name">Jaswinder<br><span class="accent">Singh</span><br>Chahal</h1>
-      <p class="hero-role">Android Engineer</p>
+      <p class="hero-role">Senior Android Engineer</p>
       <p class="hero-desc">
-        5+ years building high-performance Android apps at scale — from fintech at PayPal to logistics at Canada Post.
-        Kotlin-first. Compose-native. Obsessed with clean architecture and delightful UX.
+        5+ years shipping Android apps at scale — <strong>PayPal's OSLO monorepo serving 200M+ users</strong>, and offline-first field tools used by thousands of <strong>Canada Post</strong> delivery agents.
+        Kotlin-first. Compose-native. Clean Architecture by default. Vetted by Toptal as top 3% talent.
       </p>
       <div class="hero-cta">
         <a class="btn-primary" href="mailto:jaschahal93@gmail.com">↗ Get in touch</a>
-        <a class="btn-outline" href="https://linkedin.com/in/justjaswinder" target="_blank">LinkedIn ↗</a>
-        <a class="btn-outline" href="https://github.com/justjaswinder" target="_blank">GitHub ↗</a>
+        <a class="btn-outline" href="https://linkedin.com/in/justjaswinder" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn-outline" href="https://github.com/justjaswinder" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
     </div>
     <div class="hero-right">
       <div class="stat-card">
-        <div class="stat-icon">📱</div>
+        <div class="stat-icon" aria-hidden="true">📱</div>
         <div>
           <div class="stat-num">200M+</div>
           <div class="stat-label">Users reached via PayPal Android</div>
         </div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon">🚀</div>
+        <div class="stat-icon" aria-hidden="true">🏆</div>
         <div>
-          <div class="stat-num">5+</div>
-          <div class="stat-label">Years Android engineering</div>
+          <div class="stat-num">Top 3%</div>
+          <div class="stat-label">Toptal-vetted Android engineer</div>
         </div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon">⚡</div>
+        <div class="stat-icon" aria-hidden="true">🚚</div>
+        <div>
+          <div class="stat-num">1,000s</div>
+          <div class="stat-label">Canada Post field agents on offline-first photo capture</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" aria-hidden="true">⚡</div>
         <div>
           <div class="stat-num">10K+</div>
           <div class="stat-label">Downloads — JMess! Messenger app</div>
         </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-icon">🏗️</div>
-        <div>
-          <div class="stat-num">OSLO</div>
-          <div class="stat-label">PayPal monorepo — Jetpack Compose at scale</div>
-        </div>
-      </div>
     </div>
   </div>
+
+  <!-- CREDENTIALS / TOPTAL -->
+  <section id="credentials">
+    <div class="cred-wrap">
+      <!-- Toptal badge (official embed) -->
+      <div id="r">
+        <style>@import"https://use.typekit.net/kmj5qkr.css";</style>
+        <div class="h"><div class="a"><svg width="64" viewBox="0 0 60 17" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m20.85 6.38 6.06-.89 2.72-5.49 2.71 5.49 6.06.89-4.39 4.28 1.04 6.03-5.42-2.85-5.43 2.85 1.04-6.03zm33.06 7.17 1.85-.27.82-1.67.83 1.67 1.84.27-1.33 1.31.31 1.83-1.65-.87-1.66.87.32-1.83zm-3.38-3.01-3.61-.52-1.61-3.26-1.62 3.26-3.6.52 2.6 2.55-.61 3.59 3.23-1.69 3.21 1.69-.61-3.59zm-45.19 3.01-1.85-.27-.82-1.67-.83 1.67-1.84.27 1.33 1.31-.31 1.83 1.65-.87 1.65.87-.31-1.83zm3.38-3.01 3.61-.52 1.61-3.26 1.61 3.26 3.61.52-2.6 2.55.61 3.59-3.23-1.69-3.22 1.69.62-3.59z" fill="#00c3ff"/></svg><h3 class="b">TOP 3% TALENT</h3><div class="c"></div><span class="d">Vetted by</span><svg style="width:100px;" viewBox="0 0 108 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Toptal"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.11 0L14.82 6.7C14.87 6.75 14.91 6.8 14.97 6.85L20.82 12.7L11.31 22.16L15.66 26.52L12.75 29.41L6.09 22.75C6.01 22.68 5.93 22.6 5.85 22.52L0 16.68L9.48 7.25L5.16 2.94L8.11 0ZM12.36 10.5C12.27 10.48 12.18 10.48 12.1 10.5C12.01 10.53 11.94 10.57 11.78 10.72L6.37 16.11C6.21 16.27 6.17 16.34 6.15 16.42C6.12 16.51 6.12 16.6 6.15 16.68C6.17 16.77 6.22 16.85 6.37 17L8.09 18.72C8.24 18.87 8.31 18.91 8.4 18.94C8.49 18.96 8.57 18.96 8.66 18.94C8.75 18.91 8.82 18.87 8.97 18.72L14.38 13.33C14.54 13.18 14.58 13.1 14.61 13.02C14.63 12.93 14.63 12.85 14.61 12.76C14.59 12.67 14.54 12.6 14.39 12.45L12.67 10.73C12.52 10.57 12.44 10.53 12.36 10.5Z" fill="#204ecf"/><path fill-rule="evenodd" clip-rule="evenodd" d="M62.65 7.76C64.76 7.76 66.56 8.58 67.99 10.16C69.45 11.69 70.18 13.8 70.17 16.42C70.17 18.98 69.42 21.22 67.93 22.8C66.46 24.37 64.59 25.17 62.35 25.17C60.42 25.16 58.67 24.47 57.51 23.28L57.35 23.11L57.34 29.86L53.52 29.85V29.57L53.56 7.96L57.36 7.96L57.35 10.6C58.6 9.19 60.61 7.76 62.65 7.76ZM87.1 7.82C89.28 7.82 90.78 8.31 91.94 9.26C93.05 10.18 93.64 11.82 93.69 13.55L93.69 13.81L93.67 24.95H89.8L89.8 24.49C89.8 24.01 89.8 23.52 89.8 23.02C88.68 24.57 87.12 25.32 85.04 25.32C83.39 25.32 81.99 24.82 80.97 23.9C79.94 22.95 79.39 21.66 79.39 20.16C79.41 17.33 81.41 15.37 84.91 14.76L85.18 14.71L89.82 13.98V13.61C89.82 12.83 89.59 11.89 89.13 11.5C88.66 11.1 88.09 10.77 87.1 10.77C84.37 10.77 83.81 12.78 83.78 13.79L83.78 13.88L80.36 13.92C80.36 12.43 81.05 10.5 82.44 9.29C83.56 8.32 85.19 7.87 86.77 7.82L87.07 7.82H87.1ZM72.12 3.46L75.93 3.46L75.92 8.02L79.45 8.02L79.45 11.2L75.91 11.19L75.9 19.73C75.9 20.67 76.09 21.29 76.5 21.58C76.93 21.88 77.8 21.6 77.8 21.6L78.14 24.92C78.14 24.92 76.94 25.23 76.18 25.23C75.19 25.23 74.34 24.98 73.69 24.48C72.63 23.68 72.09 22.28 72.09 20.31L72.11 11.19L68.92 8L72.12 8.01L72.12 3.46ZM49.66 10.26C50.76 11.39 52.07 13.4 52.06 16.52C52.05 19.63 50.74 21.63 49.65 22.76C48.15 24.3 46.11 25.18 44.06 25.18C43.98 25.18 43.9 25.18 43.81 25.17C41.62 25.16 39.68 24.38 38.06 22.84C36.43 21.29 35.6 19.16 35.6 16.48C35.6 13.8 36.44 11.66 38.07 10.12C39.69 8.59 41.62 7.82 43.82 7.82C45.99 7.75 48.11 8.65 49.66 10.26ZM40.85 3.22V6.99L33.49 7L33.51 24.97L29.54 24.96V24.62L29.57 6.99H22.06L22.07 3.22H40.85ZM95.53 3.47L98.95 3.48V3.57L98.92 24.95L95.5 24.94V24.84L95.53 3.47ZM89.82 17.05L86.01 17.69C84.15 18.01 83.29 18.73 83.28 19.99C83.27 21.14 84.09 21.91 85.37 21.98L85.53 21.98H85.55C87.99 21.98 89.72 20.08 89.81 17.31L89.82 17.09V17.05ZM43.8 11.21C42.52 11.21 41.41 11.7 40.51 12.68C39.63 13.64 39.18 14.92 39.18 16.49C39.18 18.07 39.63 19.35 40.51 20.31C41.4 21.29 42.51 21.78 43.79 21.79C45.09 21.79 46.21 21.3 47.1 20.32C48 19.34 48.45 18.06 48.46 16.51C48.47 14.95 48.01 13.67 47.11 12.69C46.21 11.71 45.1 11.21 43.8 11.21ZM61.74 11.33H61.72C60.44 11.33 59.38 11.79 58.48 12.76C57.58 13.7 57.13 14.92 57.12 16.39C57.12 17.88 57.57 19.22 58.47 20.2C59.39 21.14 60.45 21.61 61.72 21.61C63.01 21.61 64.1 21.13 64.97 20.2C65.88 19.23 66.32 17.9 66.33 16.41C66.33 14.93 65.87 13.71 64.99 12.78C64.12 11.82 63.03 11.33 61.74 11.33Z" fill="#262d3d"/></svg><a target="_blank" rel="noopener" class="f" href="https://www.toptal.com/developers/resume/jaswinder-singh2#qaDr6m">Hire me</a></div></div>
+      </div>
+
+      <div class="cred-copy">
+        <div class="section-tag">Credentials</div>
+        <h2>Vetted by Toptal as <em>top 3%</em> Android talent.</h2>
+        <p>
+          Toptal accepts a small fraction of the engineers who apply. I passed their full screening — including a live technical interview —
+          and I'm available for long-term contract Android work through the Toptal network, as well as permanent roles directly.
+        </p>
+        <ul class="cred-steps">
+          <li>Communication screen</li>
+          <li>Technical assessment</li>
+          <li>Live technical interview</li>
+          <li>Network member · 2026</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <!-- SKILLS -->
   <section id="skills">
@@ -631,8 +755,9 @@
         <div class="skill-block-label">Android UI</div>
         <div class="skill-tags">
           <span class="skill-tag">Jetpack Compose</span>
-          <span class="skill-tag">XML Layouts</span>
+          <span class="skill-tag">Design Systems</span>
           <span class="skill-tag">Material Design 3</span>
+          <span class="skill-tag">XML Layouts</span>
           <span class="skill-tag">Animations</span>
           <span class="skill-tag">Navigation</span>
         </div>
@@ -640,11 +765,12 @@
       <div class="skill-block">
         <div class="skill-block-label">Architecture</div>
         <div class="skill-tags">
+          <span class="skill-tag">Clean Arch</span>
           <span class="skill-tag">MVVM</span>
           <span class="skill-tag">MVI</span>
           <span class="skill-tag">Repository</span>
           <span class="skill-tag">Hilt DI</span>
-          <span class="skill-tag">Clean Arch</span>
+          <span class="skill-tag">Modularization</span>
         </div>
       </div>
       <div class="skill-block">
@@ -658,17 +784,19 @@
         </div>
       </div>
       <div class="skill-block">
-        <div class="skill-block-label">Networking & Data</div>
+        <div class="skill-block-label">Networking &amp; Data</div>
         <div class="skill-tags">
+          <span class="skill-tag">GraphQL</span>
+          <span class="skill-tag">Apollo</span>
           <span class="skill-tag">Retrofit</span>
           <span class="skill-tag">OkHttp</span>
-          <span class="skill-tag">GraphQL</span>
           <span class="skill-tag">Room</span>
           <span class="skill-tag">Paging 3</span>
+          <span class="skill-tag">WorkManager</span>
         </div>
       </div>
       <div class="skill-block">
-        <div class="skill-block-label">Testing & Observability</div>
+        <div class="skill-block-label">Testing &amp; Observability</div>
         <div class="skill-tags">
           <span class="skill-tag">JUnit</span>
           <span class="skill-tag">Mockito</span>
@@ -686,7 +814,7 @@
         </div>
       </div>
       <div class="skill-block">
-        <div class="skill-block-label">Tools & CI/CD</div>
+        <div class="skill-block-label">Tools &amp; CI/CD</div>
         <div class="skill-tags">
           <span class="skill-tag">Android Studio</span>
           <span class="skill-tag">Git</span>
@@ -707,26 +835,37 @@
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-period">Oct 2024 — Present</div>
+        <div class="timeline-period">Oct 2024 — Jun 2026</div>
         <div class="timeline-role">Android Engineer</div>
-        <div class="timeline-company">PayPal · Toronto, Canada · Full-time</div>
+        <div class="timeline-company">PayPal · Shop Team · Toronto, Canada · Contract</div>
         <div class="timeline-features">
           <div class="timeline-feature">
             <strong>OSLO Monorepo</strong>
-            PayPal's Kotlin + Jetpack Compose unified codebase serving 200M+ users globally.
+            Shipped features in PayPal's unified Kotlin + Jetpack Compose codebase serving 200M+ users globally.
+          </div>
+          <div class="timeline-feature">
+            <strong>PayPal+ Loyalty Onboarding</strong>
+            Led the enrollment flow across the debit and loyalty teams, aligning both on a shared sealed-interface contract.
+          </div>
+          <div class="timeline-feature">
+            <strong>Shop Offers — Two-Phase Loading</strong>
+            Re-architected offer loading into two phases, eliminating blank screens on the shopping surface.
+          </div>
+          <div class="timeline-feature">
+            <strong>Compose Component Library</strong>
+            Built reusable, theme-aware benefit-card and shopping components — pixel-perfect from Figma to prod.
           </div>
           <div class="timeline-feature">
             <strong>In-App Browser</strong>
-            Designed end-to-end browser experience with session management, deep linking & secure URL handling.
-          </div>
-          <div class="timeline-feature">
-            <strong>Compose UI Kit</strong>
-            Built reusable, theme-aware Compose components for the shopping surface — pixel-perfect from Figma to prod.
+            Designed an end-to-end browser experience with session management, deep linking &amp; secure URL handling.
           </div>
           <div class="timeline-feature">
             <strong>Release Engineering</strong>
-            Managed bi-weekly releases; monitored crash rates, ANRs & API latency via Datadog.
+            Supported bi-weekly releases; monitored crash rates, ANRs &amp; API latency via Datadog.
           </div>
+        </div>
+        <div class="timeline-stack">
+          <span class="project-tech">Kotlin</span><span class="project-tech">Compose</span><span class="project-tech">GraphQL / Apollo</span><span class="project-tech">Hilt</span><span class="project-tech">Datadog</span>
         </div>
       </div>
 
@@ -734,11 +873,11 @@
         <div class="timeline-dot"></div>
         <div class="timeline-period">Sep 2021 — Jun 2024</div>
         <div class="timeline-role">Android Developer (Technology Analyst)</div>
-        <div class="timeline-company">Infosys Limited · Canada Post · Mississauga, Canada</div>
+        <div class="timeline-company">Infosys Limited · Client: Canada Post · Mississauga, Canada</div>
         <div class="timeline-features">
           <div class="timeline-feature">
-            <strong>Photo Confirmation</strong>
-            CameraX + Room + REST upload — built for low-connectivity field conditions across thousands of delivery personnel.
+            <strong>Offline-First Photo Confirmation</strong>
+            CameraX + Room + WorkManager-backed uploads, built for low-connectivity field conditions across thousands of delivery agents.
           </div>
           <div class="timeline-feature">
             <strong>Weekend Delivery</strong>
@@ -749,9 +888,12 @@
             Navigation, Paging 3, ViewModel, LiveData — production-grade architecture for mission-critical logistics ops.
           </div>
           <div class="timeline-feature">
-            <strong>Bug Triage & PDT</strong>
-            Led app support & bug triage, maintaining operational continuity across field users nationwide.
+            <strong>Bug Triage &amp; PDT</strong>
+            Led app support &amp; bug triage, maintaining operational continuity for field users nationwide.
           </div>
+        </div>
+        <div class="timeline-stack">
+          <span class="project-tech">Kotlin</span><span class="project-tech">CameraX</span><span class="project-tech">Room</span><span class="project-tech">WorkManager</span><span class="project-tech">Paging 3</span>
         </div>
       </div>
 
@@ -767,8 +909,11 @@
           </div>
           <div class="timeline-feature">
             <strong>Full-Cycle Ownership</strong>
-            Architecture to Play Store deployment across multiple client verticals using Java, Kotlin & RxJava.
+            Architecture to Play Store deployment across multiple client verticals using Java, Kotlin &amp; RxJava.
           </div>
+        </div>
+        <div class="timeline-stack">
+          <span class="project-tech">Java</span><span class="project-tech">Kotlin</span><span class="project-tech">RxJava</span><span class="project-tech">SSE</span>
         </div>
       </div>
 
@@ -780,13 +925,13 @@
     <div class="section-tag">Side Projects</div>
     <h2 class="section-title">Learning Repositories</h2>
     <div class="projects-grid">
-      <a class="project-card" href="https://github.com/justjaswinder/MoviesPlex" target="_blank">
+      <a class="project-card" href="https://github.com/justjaswinder/MoviesPlex" target="_blank" rel="noopener">
         <div class="project-card-top">
-          <div class="project-icon">🎬</div>
-          <div class="project-arrow">↗</div>
+          <div class="project-icon" aria-hidden="true">🎬</div>
+          <div class="project-arrow" aria-hidden="true">↗</div>
         </div>
         <div class="project-name">MoviesPlex</div>
-        <div class="project-desc">Full-featured movie browser built with Jetpack Compose and MVVM. Includes Retrofit for remote data, Room for local caching, and clean architecture layering.</div>
+        <div class="project-desc">Full-featured movie browser built with Jetpack Compose and MVVM. Retrofit for remote data, Room for local caching, and clean architecture layering.</div>
         <div class="project-stack">
           <span class="project-tech">Compose</span>
           <span class="project-tech">MVVM</span>
@@ -795,23 +940,23 @@
           <span class="project-tech">Kotlin</span>
         </div>
       </a>
-      <a class="project-card" href="https://github.com/justjaswinder/GraphQLDemoApp" target="_blank">
+      <a class="project-card" href="https://github.com/justjaswinder/GraphQLDemoApp" target="_blank" rel="noopener">
         <div class="project-card-top">
-          <div class="project-icon">🔗</div>
-          <div class="project-arrow">↗</div>
+          <div class="project-icon" aria-hidden="true">🔗</div>
+          <div class="project-arrow" aria-hidden="true">↗</div>
         </div>
         <div class="project-name">GraphQLDemoApp</div>
-        <div class="project-desc">Android implementation of GraphQL with clean architecture. Demonstrates efficient data fetching patterns as an alternative to REST for complex data graphs.</div>
+        <div class="project-desc">Android GraphQL client with clean architecture — efficient data-fetching patterns as an alternative to REST for complex data graphs.</div>
         <div class="project-stack">
           <span class="project-tech">GraphQL</span>
           <span class="project-tech">Clean Arch</span>
           <span class="project-tech">Kotlin</span>
         </div>
       </a>
-      <a class="project-card" href="https://github.com/justjaswinder/Weather_App" target="_blank">
+      <a class="project-card" href="https://github.com/justjaswinder/Weather_App" target="_blank" rel="noopener">
         <div class="project-card-top">
-          <div class="project-icon">🌤️</div>
-          <div class="project-arrow">↗</div>
+          <div class="project-icon" aria-hidden="true">🌤️</div>
+          <div class="project-arrow" aria-hidden="true">↗</div>
         </div>
         <div class="project-name">Weather App</div>
         <div class="project-desc">Dark-themed weather app with Compose UI, Hilt for DI, Room for local storage, Retrofit for live data, and Jetpack Navigation with custom typography.</div>
@@ -833,86 +978,111 @@
     <div class="edu-grid">
       <div class="edu-card">
         <div class="edu-year">2019 – 2021</div>
-        <div class="edu-degree">Post-Graduate Diploma — Mobile Applications Design & Development</div>
+        <div class="edu-degree">Post-Graduate Diploma — Mobile Applications Design &amp; Development</div>
         <div class="edu-school">Lambton College at Cestar College · Toronto, ON</div>
       </div>
       <div class="edu-card">
         <div class="edu-year">May 2015</div>
-        <div class="edu-degree">B.Tech — Computer Science & Engineering</div>
+        <div class="edu-degree">B.Tech — Computer Science &amp; Engineering</div>
         <div class="edu-school">Guru Nanak Dev Engineering College</div>
       </div>
       <div class="edu-card">
         <div class="edu-year">May 2012</div>
-        <div class="edu-degree">Diploma — Computer Science & Engineering</div>
+        <div class="edu-degree">Diploma — Computer Science &amp; Engineering</div>
         <div class="edu-school">Guru Nanak Dev Polytechnic College</div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" style="max-width:100%; padding-left:max(48px,5vw); padding-right:max(48px,5vw);">
-    <div class="section-tag" style="justify-content:center;">Contact</div>
+  <section id="contact">
+    <div class="section-tag">Contact</div>
     <div class="contact-headline">Let's build<br>something <em>great.</em></div>
     <p class="contact-sub">
-      Open to remote Android roles with Canada &amp; US-based companies.<br>
-      Toronto, ON · Available now.
+      Open to permanent and long-term contract Senior Android roles —<br>
+      remote with Canada &amp; US-based teams, or hybrid in the Greater Toronto Area. Available now.
     </p>
     <div class="contact-links">
       <a class="contact-link" href="mailto:jaschahal93@gmail.com">
-        <span class="contact-link-icon">✉</span> jaschahal93@gmail.com
+        <span class="contact-link-icon" aria-hidden="true">✉</span> jaschahal93@gmail.com
       </a>
-      <a class="contact-link" href="tel:4372479331">
-        <span class="contact-link-icon">📞</span> (437) 247-9331
+      <a class="contact-link" href="tel:+14372479331">
+        <span class="contact-link-icon" aria-hidden="true">📞</span> (437) 247-9331
       </a>
-      <a class="contact-link" href="https://linkedin.com/in/justjaswinder" target="_blank">
-        <span class="contact-link-icon">💼</span> LinkedIn
+      <a class="contact-link" href="https://linkedin.com/in/justjaswinder" target="_blank" rel="noopener">
+        <span class="contact-link-icon" aria-hidden="true">💼</span> LinkedIn
       </a>
-      <a class="contact-link" href="https://github.com/justjaswinder" target="_blank">
-        <span class="contact-link-icon">🐙</span> GitHub
+      <a class="contact-link" href="https://github.com/justjaswinder" target="_blank" rel="noopener">
+        <span class="contact-link-icon" aria-hidden="true">🐙</span> GitHub
+      </a>
+      <a class="contact-link toptal" href="https://www.toptal.com/developers/resume/jaswinder-singh2#qaDr6m" target="_blank" rel="noopener">
+        <span class="contact-link-icon" aria-hidden="true">★</span> Hire via Toptal
       </a>
     </div>
   </section>
 
+  </main>
+
   <!-- FOOTER -->
   <footer>
-    <span>© 2025 Jaswinder Singh Chahal</span>
-    <span>Android Engineer · Toronto, ON</span>
+    <span>© <span id="year">2026</span> Jaswinder Singh Chahal</span>
+    <span>Senior Android Engineer · Greater Toronto Area</span>
   </footer>
 
   <script>
-    // Cursor
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    function animateCursor() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
-      ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
-      requestAnimationFrame(animateCursor);
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Cursor (only on devices with a fine pointer)
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (finePointer) {
+      const cursor = document.getElementById('cursor');
+      const ring = document.getElementById('cursorRing');
+      let mx = -100, my = -100, rx = -100, ry = -100;
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+      document.addEventListener('mouseleave', () => { cursor.style.opacity = 0; ring.style.opacity = 0; });
+      document.addEventListener('mouseenter', () => { cursor.style.opacity = 1; ring.style.opacity = 0.6; });
+      (function animateCursor() {
+        const ease = reduceMotion ? 1 : 0.12;
+        rx += (mx - rx) * ease;
+        ry += (my - ry) * ease;
+        cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+        ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+        requestAnimationFrame(animateCursor);
+      })();
+      document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.margin = '-12px 0 0 -12px'; ring.style.borderColor = 'var(--accent2)'; });
+        el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.margin = '0'; ring.style.borderColor = 'var(--accent)'; });
+      });
     }
-    animateCursor();
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.borderColor = 'var(--accent2)'; });
-      el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'var(--accent)'; });
-    });
 
     // Navbar on scroll
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-    });
+    const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
     // Scroll-triggered timeline
-    const observer = new IntersectionObserver(entries => {
+    const tlObserver = new IntersectionObserver(entries => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
           setTimeout(() => e.target.classList.add('visible'), i * 120);
+          tlObserver.unobserve(e.target);
         }
       });
     }, { threshold: 0.15 });
-    document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
+    document.querySelectorAll('.timeline-item').forEach(el => tlObserver.observe(el));
+
+    // Highlight active nav link
+    const links = [...document.querySelectorAll('.nav-links a')];
+    const secObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    links.forEach(l => { const s = document.querySelector(l.getAttribute('href')); if (s) secObserver.observe(s); });
   </script>
 </body>
 </html>
